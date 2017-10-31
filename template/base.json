@@ -1,27 +1,28 @@
-
 {
-    "builders":[{
-        "type": "docker",
-	"commit": false,
-        "export_path": "base.tar",
-	"author": "Remy Adriaanse",
-        "image": "alpine:3.6"
-    }],
-    "provisioners":[
-        {
-            "type": "shell",
-            "inline": ["apk update && apk upgrade && apk add curl wget openssl bash"]
-        }
-    ],
-    "post-processors": [
-        {
-            "type": "docker-import",
-            "repository": "radriaanse/base",
-            "tag": "0.1"
-        },
-	{
-		"type": "manifest",
-		"output": "base_manifest.json"
-	}
-    ]
+	"builders": [
+		{
+			"type": "docker",
+			"commit": false,
+			"export_path": "base.tar",
+			"author": "Remy Adriaanse",
+			"image": "alpine:3.6"
+		}
+	],
+	"provisioners": [
+		{
+			"type": "shell",
+			"inline": ["apk update && apk upgrade && apk add curl wget openssl bash"]
+		}
+	],
+	"post-processors": [
+        	{
+			"type": "docker-import",
+			"repository": "radriaanse/base",
+			"tag": "0.1"
+        	},
+		{
+			"type": "manifest",
+			"output": "base_manifest.json"
+		}
+	]
 }
