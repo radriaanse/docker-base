@@ -2,8 +2,10 @@
 {
     "builders":[{
         "type": "docker",
-        "image": "alpine:3.6",
-        "export_path": "image.tar"
+	"commit": false,
+        "export_path": "base.tar",
+	"author": "Remy Adriaanse",
+        "image": "alpine:3.6"
     }],
     "provisioners":[
         {
@@ -16,6 +18,10 @@
             "type": "docker-import",
             "repository": "radriaanse/base",
             "tag": "0.1"
-        }
+        },
+	{
+		"type": "manifest",
+		"output": "base_manifest.json"
+	}
     ]
 }
