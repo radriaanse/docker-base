@@ -1,0 +1,21 @@
+
+{
+    "builders":[{
+        "type": "docker",
+        "image": "alpine:3.6",
+        "export_path": "image.tar"
+    }],
+    "provisioners":[
+        {
+            "type": "shell",
+            "inline": ["apk update && apk upgrade && apk add curl wget openssl bash"]
+        }
+    ],
+    "post-processors": [
+        {
+            "type": "docker-import",
+            "repository": "radriaanse/base",
+            "tag": "0.1"
+        }
+    ]
+}
